@@ -1,0 +1,15 @@
+<h2>{{ show.title }} ({{ show.time }})</h2>
+<h3>Seats:</h3>
+<ul>
+{% for seat in seats %}
+  <li>
+    Seat {{ seat.seat_number }} - 
+    {% if seat.is_booked %}
+      <b>Booked</b>
+    {% else %}
+      <a href="/book/{{ seat.id }}/{{ show.id }}">Book Now</a>
+    {% endif %}
+  </li>
+{% endfor %}
+</ul>
+<a href="/shows">Back to Shows</a>

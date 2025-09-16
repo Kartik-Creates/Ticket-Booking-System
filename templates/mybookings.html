@@ -1,0 +1,6 @@
+<h2>My Bookings</h2>
+<ul>
+{% for b in bookings %}
+  <li>{{ b.title }} ({{ b.time }}) - Seat {{ b.seat_number }}</li>
+{% endfor %}
+</ul>

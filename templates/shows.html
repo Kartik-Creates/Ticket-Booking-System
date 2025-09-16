@@ -1,0 +1,9 @@
+<h2>Available Shows</h2>
+<ul>
+{% for show in shows %}
+  <li>
+    {{ show.title }} at {{ show.time }} 
+    <a href="/show/{{ show.id }}">View Seats</a>
+  </li>
+{% endfor %}
+</ul>
