@@ -1,19 +1,35 @@
-<h2>Payment Page</h2>
-<p>Show: {{ show.title }} ({{ show.time }})</p>
-<p>Seat: {{ seat.seat_number }}</p>
-<p><b>Price: ₹200</b></p>
+<!-- templates/payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Payment for {{ show['title'] }} (Seat: {{ seat['seat_number'] }})</h1>
 
-<form method="POST" action="/confirm_payment/{{ seat.id }}/{{ show.id }}">
-    <label>Card Number:</label>
-    <input type="text" name="card" placeholder="1234-5678-9876-5432" required><br><br>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
-    <label>Expiry:</label>
-    <input type="text" name="expiry" placeholder="MM/YY" required><br><br>
+    <form method="POST" action="{{ url_for('confirm_payment', seat_id=seat['id'], show_id=show['id']) }}">
+        <p>Amount: ₹100</p>
+        <label>Card Number:</label>
+        <input type="text" name="card_number" required><br><br>
+        <label>Expiry:</label>
+        <input type="text" name="expiry" placeholder="MM/YY" required><br><br>
+        <label>CVV:</label>
+        <input type="password" name="cvv" required><br><br>
+        <button type="submit">Pay & Book</button>
+    </form>
 
-    <label>CVV:</label>
-    <input type="password" name="cvv" maxlength="3" required><br><br>
-
-    <button type="submit">Pay ₹200</button>
-</form>
-
-<a href="/show/{{ show.id }}">Cancel</a>
+    <p><a href="{{ url_for('show_details', show_id=show['id']) }}">Back to Seats</a></p>
+</body>
+</html>

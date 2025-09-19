@@ -25,7 +25,7 @@ def init_db():
         CREATE TABLE IF NOT EXISTS shows (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
-            time TEXT NOT NULL
+            show_time TEXT NOT NULL
         )
     """)
     
@@ -34,7 +34,7 @@ def init_db():
         CREATE TABLE IF NOT EXISTS seats (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             show_id INTEGER,
-            seat_number TEXT,
+            seat_number TEXT NOT NULL,
             is_booked INTEGER DEFAULT 0,
             FOREIGN KEY(show_id) REFERENCES shows(id)
         )
@@ -47,28 +47,13 @@ def init_db():
             user_id INTEGER,
             show_id INTEGER,
             seat_id INTEGER,
+            status TEXT DEFAULT 'confirmed',
             FOREIGN KEY(user_id) REFERENCES users(id),
             FOREIGN KEY(show_id) REFERENCES shows(id),
             FOREIGN KEY(seat_id) REFERENCES seats(id)
         )
     """)
     
-    # Insert dummy shows + seats (only first time)
-    c.execute("SELECT COUNT(*) FROM shows")
-    if c.fetchone()[0] == 0:
-        shows = [
-            ("Avengers: Endgame", "18:00"),
-            ("Inception", "21:00"),
-            ("Interstellar", "15:00")
-        ]
-        c.executemany("INSERT INTO shows (title, time) VALUES (?, ?)", shows)
-
-        c.execute("SELECT id FROM shows")
-        show_ids = [row[0] for row in c.fetchall()]
-        for show_id in show_ids:
-            seats = [(show_id, f"A{i}", 0) for i in range(1, 11)]  # 10 seats per show
-            c.executemany("INSERT INTO seats (show_id, seat_number, is_booked) VALUES (?, ?, ?)", seats)
-
     conn.commit()
     conn.close()
 
@@ -79,7 +64,7 @@ def init_db():
 def home():
     if "user_id" not in session:
         return redirect(url_for("login"))
-    return f"Welcome {session['username']}! <a href='/logout'>Logout</a>"
+    return f"Welcome {session['username']}! <a href='/logout'>Logout</a> | <a href='/shows'>View Shows</a> | <a href='/mybookings'>My Bookings</a>"
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -132,6 +117,8 @@ def logout():
     session.clear()
     flash("Logged out successfully.", "info")
     return redirect(url_for("login"))
+
+
 @app.route("/shows")
 def shows():
     if "user_id" not in session:
@@ -220,7 +207,7 @@ def my_bookings():
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
     c.execute("""
-        SELECT b.id, s.seat_number, sh.title, sh.time
+        SELECT b.id, s.seat_number, sh.title, sh.show_time
         FROM bookings b
         JOIN seats s ON b.seat_id = s.id
         JOIN shows sh ON b.show_id = sh.id

@@ -1,9 +1,18 @@
-<h2>Available Shows</h2>
-<ul>
-{% for show in shows %}
-  <li>
-    {{ show.title }} at {{ show.time }} 
-    <a href="/show/{{ show.id }}">View Seats</a>
-  </li>
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Movies</title>
+</head>
+<body>
+    <h2>Available Movies</h2>
+    <ul>
+        {% for show in shows %}
+            <li>
+                {{ show['title'] }} at {{ show['show_time'] }}
+                <a href="/seats/{{ show['id'] }}">Book Now</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/logout">Logout</a>
+</body>
+</html>
