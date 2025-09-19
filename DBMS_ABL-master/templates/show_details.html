@@ -1,0 +1,27 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="main-heading">{{ show['title'] }} - {{ show['time'] }}</h2>
+
+    <h3>Available Seats</h3>
+    <ul>
+        {% for seat in seats %}
+            <li>
+                Seat: {{ seat['seat_number'] }}
+                {% if seat['is_booked'] == 0 %}
+                    <a href="{{ url_for('book', seat_id=seat['id'], show_id=show['id']) }}">
+                        Book Now
+                    </a>
+                {% else %}
+                    <span style="color: red;">Booked</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

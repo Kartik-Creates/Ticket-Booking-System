@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ show.title }} — {{ show.time }}</h2>
+<h3>Select Your Seat</h3>
+
+<div style="margin-bottom: 20px;">
+    {% for seat in seats %}
+        {% if seat.is_booked %}
+            <div class="seat booked">{{ seat.seat_number }}</div>
+        {% else %}
+            <a href="{{ url_for('book', seat_id=seat.id, show_id=show.id) }}" class="seat available">{{ seat.seat_number }}</a>
+        {% endif %}
+        {% if loop.index % 5 == 0 %}
+            <br>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<a href="{{ url_for('shows') }}">
+    <button>⬅ Back to Shows</button>
+</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Payment Confirmation</h2>
+<p><strong>Movie:</strong> {{ show.title }}</p>
+<p><strong>Show Time:</strong> {{ show.time }}</p>
+<p><strong>Seat:</strong> {{ seat.seat_number }}</p>
+
+<form action="{{ url_for('confirm_payment', seat_id=seat.id, show_id=show.id) }}" method="POST">
+    <button type="submit">✅ Confirm Payment</button>
+</form>
+
+<a href="{{ url_for('seats', show_id=show.id) }}">
+    <button>⬅ Back to Seat Selection</button>
+</a>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome, {{ username }} 👋</h2>
+<p>Ready to book your favorite movie? Click below to view all available shows:</p>
+<a href="{{ url_for('shows') }}">
+    <button>🎬 View Shows</button>
+</a>
+{% endblock %}

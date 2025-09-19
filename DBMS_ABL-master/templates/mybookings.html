@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🎟️ My Bookings</h2>
+
+{% if bookings %}
+    <ul>
+        {% for booking in bookings %}
+        <li>
+            <strong>Movie:</strong> {{ booking.title }} |
+            <strong>Show Time:</strong> {{ booking.time }} |
+            <strong>Seat:</strong> {{ booking.seat_number }}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven’t booked any tickets yet.</p>
+{% endif %}
+
+<a href="{{ url_for('shows') }}">
+    <button>🎬 Book More Tickets</button>
+</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎟️ Movie Ticket Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎟️ Movie Ticket Booking System</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+              {% for category, message in messages %}
+                <li style="color: {% if category == 'danger' %}red{% elif category == 'success' %}green{% else %}blue{% endif %};">
+                  {{ message }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Navigation -->
+        {% if session.get('user_id') %}
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('shows') }}">Shows</a>
+            <a href="{{ url_for('mybookings') }}">My Bookings</a>
+
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Movie Booking App | Built with ❤️</p>
+    </footer>
+</body>
+</html>

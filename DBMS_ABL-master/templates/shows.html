@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Available Shows</h2>
+
+<ul>
+    {% for show in shows %}
+    <li style="margin-bottom: 15px;">
+        <strong>{{ show.title }}</strong> — {{ show.time }}
+        <a href="{{ url_for('seats', show_id=show.id) }}">
+            <button style="margin-left: 20px;">Select Seats</button>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
