@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seats</title>
+</head>
+<body>
+    <h2>Choose a Seat</h2>
+    <ul>
+        {% for seat in seats %}
+            <li>
+                Seat {{ seat['seat_number'] }}
+                {% if seat['is_booked'] == 0 %}
+                    <a href="/book/{{ show_id }}/{{ seat['id'] }}">Book</a>
+                {% else %}
+                    (Booked)
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/shows">Back to Movies</a>
+</body>
+</html>

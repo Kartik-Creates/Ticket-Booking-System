@@ -9,7 +9,7 @@
         {% for show in shows %}
             <li>
                 {{ show['title'] }} at {{ show['show_time'] }}
-                <a href="/seats/{{ show['id'] }}">Book Now</a>
+                <a href="/show/{{ show['id'] }}">Book Now</a>
             </li>
         {% endfor %}
     </ul>

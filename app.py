@@ -207,7 +207,7 @@ def my_bookings():
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
     c.execute("""
-        SELECT b.id, s.seat_number, sh.title, sh.show_time
+        SELECT b.id, s.seat_number, sh.title, sh.time
         FROM bookings b
         JOIN seats s ON b.seat_id = s.id
         JOIN shows sh ON b.show_id = sh.id

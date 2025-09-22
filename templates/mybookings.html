@@ -1,6 +1,15 @@
-<h2>My Bookings</h2>
-<ul>
-{% for b in bookings %}
-  <li>{{ b.title }} ({{ b.time }}) - Seat {{ b.seat_number }}</li>
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+</head>
+<body>
+    <h2>My Bookings</h2>
+    <ul>
+        {% for b in bookings %}
+            <li>{{ b['title'] }} at {{ b['show_time'] }} - Seat {{ b['seat_number'] }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/shows">Back to Movies</a> | <a href="/logout">Logout</a>
+</body>
+</html>
