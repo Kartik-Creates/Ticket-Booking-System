@@ -6,7 +6,7 @@
     <title>Payment</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body><div
     <h1>Payment for {{ show['title'] }} (Seat: {{ seat['seat_number'] }})</h1>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -38,6 +38,6 @@
 </form>
 
 
-    <p><a href="{{ url_for('show_details', show_id=show['id']) }}">Back to Seats</a></p>
+    <p><a href="{{ url_for('show_details', show_id=show['id']) }}">Back to Seats</a></p></body></div>
 </body>
 </html>

@@ -2,17 +2,22 @@
 <html>
 <head>
     <title>Available Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Available Movies</h2>
-    <ul>
-        {% for show in shows %}
-            <li>
-                {{ show['title'] }} at {{ show['show_time'] }}
-                <a href="/show/{{ show['id'] }}">Book Now</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/logout">Logout</a>
+    <header>Movie Booking System</header>
+    <div class="container">
+        <h2>Available Movies</h2>
+        <div class="card-grid">
+            {% for show in shows %}
+                <div class="card">
+                    <strong>{{ show['title'] }}</strong><br>
+                    <span style="color:#888;">{{ show['show_time'] }}</span><br>
+                    <a class="btn" href="/show/{{ show['id'] }}" style="margin-top:0.7rem;display:inline-block;">Book Now</a>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="/logout" class="btn" style="background:#c62828;color:#fff;">Logout</a>
+    </div>
 </body>
 </html>

@@ -1,0 +1,161 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: #22223b;
+    color: #fff;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.container {
+    max-width: 400px;
+    margin: 3rem auto;
+    background: #fff;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    text-align: center;
+}
+
+h2 {
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.3rem;
+    color: #333;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #bdbdbd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f3f8ff;
+    transition: border 0.2s;
+}
+
+form input:focus {
+    border: 1.5px solid #2563eb;
+    outline: none;
+    background: #eaf1ff;
+}
+
+button, .btn {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+    color: #22223b;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px rgba(67,233,123,0.12);
+    transition: background 0.2s, color 0.2s;
+}
+button:hover, .btn:hover {
+    background: linear-gradient(90deg, #2563eb 0%, #43e97b 100%);
+    color: #fff;
+}
+
+.flash-success { color: #2e7d32; }
+.flash-error { color: #c62828; }
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover {
+    text-decoration: underline;
+    color: #43e97b;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+/* Add below your existing CSS */
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    min-width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.styled-table thead tr {
+    background-color: #2563eb;
+    color: #fff;
+    text-align: left;
+}
+.styled-table th, .styled-table td {
+    padding: 0.9rem 1.2rem;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #e3e3e3;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f8ff;
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #2563eb;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+}
+.card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    padding: 1.2rem 1.5rem;
+    min-width: 220px;
+    max-width: 260px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.seats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+.seat {
+    min-width: 60px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    background: #e0e0e0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-bottom: 0.5rem;
+}
+.seat.available { background: #a5d6a7; }
+.seat.booked { background: #ef9a9a; color: #fff; }

@@ -61,11 +61,11 @@ def init_db():
 
 # ---------------- Routes ----------------
 @app.route("/")
-def home():
-    if "user_id" not in session:
+def index():
+    if "username" in session:
+        return render_template("index.html")
+    else:
         return redirect(url_for("login"))
-    return f"Welcome {session['username']}! <a href='/logout'>Logout</a> | <a href='/shows'>View Shows</a> | <a href='/mybookings'>My Bookings</a>"
-
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

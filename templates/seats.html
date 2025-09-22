@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Seats</title>
+  <meta charset="UTF-8">
+  <title>{{ show.title }} Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Choose a Seat</h2>
-    <ul>
-        {% for seat in seats %}
-            <li>
-                Seat {{ seat['seat_number'] }}
-                {% if seat['is_booked'] == 0 %}
-                    <a href="/book/{{ show_id }}/{{ seat['id'] }}">Book</a>
-                {% else %}
-                    (Booked)
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/shows">Back to Movies</a>
+  <header>Movie Booking System</header>
+  <div class="container">
+    <h2>{{ show.title }} <span style="font-size:1rem; color:#888;">({{ show.time }})</span></h2>
+    <h3>Seats:</h3>
+    <div class="seats-grid">
+      {% for seat in seats %}
+        <div class="seat {% if seat.is_booked %}booked{% else %}available{% endif %}">
+          {{ seat.seat_number }}
+          {% if not seat.is_booked %}
+            <br>
+            <a class="btn" href="/book/{{ seat.id }}/{{ show.id }}" style="margin-top:0.3rem;">Book</a>
+          {% else %}
+            <div style="font-size:0.9rem;color:#c62828;">Booked</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <a href="/shows" class="btn" style="background:#2563eb;color:#fff;margin-top:1.2rem;">Back to Shows</a>
+  </div>
 </body>
 </html>

@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Ticket Booking System</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Ticket Booking System 🎟️</h1>
-    <ul>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/movies">View Movies</a></li>
-    </ul>
+    <header>Movie Booking System</header>
+    <div class="container" style="text-align:center;">
+        <h2>Welcome, {{ session['username'] }}!</h2>
+        <div class="card-grid" style="justify-content:center; margin-top:2rem;">
+            <div class="card">
+                <h3>View Shows</h3>
+                <p>Browse and book your favorite movies.</p>
+                <a href="{{ url_for('shows') }}" class="btn">View Shows</a>
+            </div>
+            <div class="card">
+                <h3>My Bookings</h3>
+                <p>See your booked tickets and details.</p>
+                <a href="{{ url_for('my_bookings') }}" class="btn">My Bookings</a>
+            </div>
+            <div class="card">
+                <h3>Logout</h3>
+                <p>Sign out of your account.</p>
+                <a href="{{ url_for('logout') }}" class="btn" style="background:#c62828;color:#fff;">Logout</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
