@@ -105,7 +105,7 @@ def login():
             session["user_id"] = user["id"]
             session["username"] = user["username"]
             flash("Login successful!", "success")
-            return redirect(url_for("home"))
+            return redirect(url_for("index"))
         else:
             flash("Invalid credentials!", "danger")
 
